@@ -10,8 +10,6 @@ ja:
   views:
     top:
       index:
-        login: "ログイン"
-        sign_in: "アカウントを作成する"
   date:
     abbr_day_names:
     - 日
