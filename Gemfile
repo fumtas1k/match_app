@@ -13,8 +13,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'faker'
+gem 'rexml'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'launchy'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -26,6 +32,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
