@@ -1,0 +1,15 @@
+.nav-link {
+  color: #dadfe5;
+  &:hover {
+    color: #fd3378;
+  }
+}
+.active {
+  color: #fd3378;
+}
+.fa-fire, .fa-comments, .fa-user{
+  color: #dadfe5;
+}
+.inherit {
+  color: inherit;
+}
