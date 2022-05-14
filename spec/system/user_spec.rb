@@ -121,9 +121,10 @@ RSpec.describe User, type: :system do
     end
 
     context "全てを変更して更新ボタンを押した場合" do
-      let(:user_attr) { attributes_for(:user, name: "seconduser", email: "second@diver.com",
-                        password: "password2", password_confirmation: "password2",
-                        gender: "female", self_introduction: "I am a ...") }
+      let(:user_attr) { attributes_for(
+        :user, name: "seconduser", email: "second@diver.com",
+        password: "password2", password_confirmation: "password2",
+        gender: "female", self_introduction: "I am a ...") }
       before do
         sign_in user
         visit edit_user_registration_path(user)
