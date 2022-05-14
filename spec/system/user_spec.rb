@@ -62,4 +62,50 @@ RSpec.describe User, type: :system do
       end
     end
   end
+
+  describe "authenticate_user!" do
+    let!(:user) { create(:user) }
+    context "ログインせずにプロフィールページを表示しようとした場合" do
+      it "ログインページにリダイレクトする" do
+        visit user_path(user)
+        expect(current_path).to eq new_user_session_path
+      end
+    end
+
+    context "ログイン後プロフィールページを表示しようとした場合" do
+      it "プロフィールページが表示される" do
+        sign_in user
+        visit user_path(user)
+        expect(current_path).to eq user_path(user)
+      end
+    end
+  end
+
+  describe "プロフィールページ" do
+    let!(:user) { create(:user) }
+    before do
+      sign_in user
+      visit user_path(user)
+    end
+
+    context "ログインして表示する場合" do
+      it "プロフィールページが表示される" do
+        expect(current_path).to eq user_path(user)
+      end
+    end
+
+    context "ログアウトボタンを押す場合" do
+      it "ログアウトしてトップページが表示される" do
+        click_link(href: destroy_user_session_path)
+        expect(current_path).to eq root_path
+      end
+    end
+
+    context "編集ボタンを押す場合" do
+      it "ユーザー編集ページが表示される" do
+        click_link(href: edit_user_registration_path(user))
+        expect(current_path).to eq edit_user_registration_path(user)
+      end
+    end
+  end
 end
