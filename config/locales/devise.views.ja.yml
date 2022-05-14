@@ -12,9 +12,11 @@ ja:
         email: Eメール
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
+        gender: 性別
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
+        name: 名前
         password: パスワード
         password_confirmation: パスワード（確認用）
         remember_created_at: ログイン記憶時刻
@@ -27,6 +29,11 @@ ja:
         updated_at: 更新日
     models:
       user: ユーザー
+  enum:
+    user:
+      gender:
+        male: 男性
+        female: 女性
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
@@ -121,6 +128,7 @@ ja:
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか？
         didn_t_receive_unlock_instructions: アカウントのロック解除方法のメールを受け取っていませんか？
         forgot_your_password: パスワードを忘れましたか？
+        have_you_account: アカウントをお持ちですか？
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録

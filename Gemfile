@@ -15,6 +15,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'enum_help'
 gem 'faker'
 gem 'rexml'
 

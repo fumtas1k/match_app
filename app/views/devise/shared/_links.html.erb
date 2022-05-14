@@ -1,5 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to t(".sign_in"), new_session_path(resource_name) %><br />
+  <%= t("devise.shared.links.have_you_account") %>
+  <%= link_to t(".sign_in"), new_session_path(resource_name) %>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
