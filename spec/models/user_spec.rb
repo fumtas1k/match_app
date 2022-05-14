@@ -62,5 +62,17 @@ RSpec.describe User, type: :model do
       before { user.password_confirmation = "a" * 6 }
       it_behaves_like "バリデーションに引っかかる"
     end
+
+    context "紹介文を500文字にした場合" do
+      before { user.self_introduction = "a" * 500 }
+      it "バリデーションが通る" do
+        expect(user).to be_valid
+      end
+    end
+
+    context "紹介文を501文字にした場合" do
+      before { user.self_introduction = "a" * 501 }
+      it_behaves_like "バリデーションに引っかかる"
+    end
   end
 end

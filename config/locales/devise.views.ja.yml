@@ -23,6 +23,7 @@ ja:
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
         reset_password_token: パスワードリセット用トークン
+        self_introduction: 紹介
         sign_in_count: ログイン回数
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン

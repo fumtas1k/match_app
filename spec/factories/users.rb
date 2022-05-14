@@ -6,6 +6,7 @@ FactoryBot.define do
     gender { "male" }
     password { "password" }
     password_confirmation { "password" }
+    self_introduction { "I am a genius" }
 
     trait :seq do
       sequence :name, "user001"
