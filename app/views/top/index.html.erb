@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light">
       <a class="navbar-brand text-white">Match App</a>
       <div class="navbar__sign-in-btn">
-        <%= link_to t("views.top.index.login"), "#", class: "btn my-2 my-sm-0 bg-light text-top-color" %>
+        <%= link_to t("devise.sessions.new.sign_in"), new_user_session_path, class: "btn my-2 my-sm-0 bg-light text-top-color" %>
       </div>
     </nav>
   </div>
@@ -16,10 +16,10 @@
 
   <div class="top-authentication text-center">
     <div class="top-authentication__sign-up-btn m-3">
-      <%= link_to t("views.top.index.sign_in"), "#", class: "btn text-white" %>
+      <%= link_to t("devise.registrations.new.sign_up"), new_user_registration_path, class: "btn text-white" %>
     </div>
     <div class="top-authentication__sign-in-btn m-3">
-      <%= link_to t("views.top.index.login"), "#", class: "btn text-white" %>
+      <%= link_to t("devise.sessions.new.sign_in"), new_user_session_path, class: "btn text-white" %>
     </div>
   </div>
 </div>
