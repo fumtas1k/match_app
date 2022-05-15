@@ -2,7 +2,7 @@
 
 ## アプリ
 
-https://sheltered-caverns-78895.herokuapp.com/
+https://radiant-taiga-95264.herokuapp.com/
 
 ## 開発環境
 
