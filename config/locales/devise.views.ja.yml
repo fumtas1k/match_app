@@ -19,6 +19,7 @@ ja:
         name: 名前
         password: パスワード
         password_confirmation: パスワード（確認用）
+        profile_image: プロフィール画像
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
@@ -104,6 +105,7 @@ ja:
         cancel_my_account: アカウント削除
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
         leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
+        select_file: ファイル選択
         title: "%{resource}編集"
         unhappy: 気に入りません
         update: 更新

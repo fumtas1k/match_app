@@ -57,4 +57,10 @@ RSpec.configure do |config|
   end
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.include FactoryBot::Syntax::Methods
+
+  # fixture_upload_pathを使用するために以下の記載が必要
+  config.include ActionDispatch::TestProcess
+  FactoryBot::SyntaxRunner.class_eval do
+    include ActionDispatch::TestProcess
+  end
 end

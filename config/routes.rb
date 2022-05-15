@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     sessions: "users/sessions"
   }
-  resources :users, only: %i[show]
+  devise_scope :user do
+    resources :users, only: %i[show index]
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

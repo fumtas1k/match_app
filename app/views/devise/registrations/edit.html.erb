@@ -5,7 +5,15 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="profile">
-      <div class="profile-default-img"></div>
+      <img src="#" alt="prev" id="profile-img-prev" class="hidden">
+      <% if resource.profile_image.url.nil? %>
+        <div class="profile-default-img"></div>
+      <% else %>
+        <%= image_tag resource.profile_image.url, class: "profile-img", id: "profile-img" %>
+      <% end %>
+      <%= f.label :profile_image, class: "profile-img-upload" do %>
+        <%= f.file_field :profile_image, accept: "image/*" %><%= t("devise.registrations.edit.select_file") %>
+      <% end %>
     </div>
 
     <div class="form-group">
