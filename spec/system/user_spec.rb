@@ -115,7 +115,9 @@ RSpec.describe User, type: :system do
       it "プロフィールページに移動し、user情報は変わらない" do
         user_attr.delete(:password)
         user_attr.delete(:password_confirmation)
+        profile_image = user_attr.delete(:profile_image)
         user_attr.each {|key, val| expect(user.reload.send(key)).to eq val }
+        expect(user.reload.profile_image.identifier).to eq profile_image.original_filename
         expect(current_path).to eq user_path(user)
       end
     end
@@ -123,23 +125,27 @@ RSpec.describe User, type: :system do
     context "全てを変更して更新ボタンを押した場合" do
       let(:user_attr) { attributes_for(:user, name: "seconduser", email: "second@diver.com",
                                        password: "password2", password_confirmation: "password2",
-                                       gender: "female", self_introduction: "I am a ...") }
+                                       gender: "female", self_introduction: "I am a ...",
+                                       profile_image: "#{Rails.root}/spec/fixtures/images/avatar.jpg") }
       before do
         sign_in user
         visit edit_user_registration_path(user)
         fill_in "user_email", with: user_attr[:email]
         fill_in "user_name", with: user_attr[:name]
         fill_in "user_self_introduction", with: user_attr[:self_introduction]
+        attach_file "user_profile_image", user_attr[:profile_image], visible: false
         fill_in "user_password", with: user_attr[:password]
         fill_in "user_password_confirmation", with: user_attr[:password_confirmation]
         find("#luser-gender-#{user_attr[:gender]}").click
         click_on "commit"
         sleep 0.1
       end
-      it "プロフィールページに移動し、user情報は変わらない" do
+      it "プロフィールページに移動し、user情報が変更される" do
         user_attr.delete(:password)
         user_attr.delete(:password_confirmation)
+        profile_image = user_attr.delete(:profile_image)
         user_attr.each {|key, val| expect(user.reload.send(key)).to eq val }
+        expect(user.reload.profile_image.identifier).to eq profile_image.split("/").last
         expect(current_path).to eq user_path(user)
       end
     end
@@ -157,8 +163,10 @@ RSpec.describe User, type: :system do
       it "ユーザーは変更されず、エラーメッセージが表示される" do
         user_attr.delete(:password)
         user_attr.delete(:password_confirmation)
+        profile_image = user_attr.delete(:profile_image)
         user_attr.each {|key, val| expect(user.reload.send(key)).to eq val }
         expect(page).to have_content I18n.t("errors.messages.not_saved.one", resource: User.model_name.human)
+        expect(user.reload.profile_image.identifier).to eq profile_image.original_filename
       end
     end
   end
