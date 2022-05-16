@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :reaction do
-    to_user { nil }
-    from_user { nil }
-    status { 1 }
+    association :to_user, factory: :user
+    association :from_user, factory: :user
+    status { "like" }
   end
 end
