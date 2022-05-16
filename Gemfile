@@ -18,6 +18,7 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'enum_help'
 gem 'faker'
+gem 'fog-aws'
 gem 'image_processing', '~> 1.2'
 gem 'rexml'
 
