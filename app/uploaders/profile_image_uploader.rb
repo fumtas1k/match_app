@@ -4,8 +4,7 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  Rails.env.production? ? storage(:fog) : storage(:file)
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -22,7 +21,9 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process scale: [200, 300]
+  process resize_to_limit: [340, 520]
+  process convert: "jpg"
+
   #
   # def scale(width, height)
   #   # do something
