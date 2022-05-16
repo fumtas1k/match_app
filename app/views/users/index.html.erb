@@ -9,7 +9,7 @@
 
     <div class="swipe--cards">
       <% @users.each do |user| %>
-        <div class="swipe--card" id=<%= "user-#{user.id}" %>>
+        <div class="swipe--card" id=<%= user.id %>>
           <% if user.profile_image.url.nil? %>
             <div class="profile-default-img"></div>
           <% else %>

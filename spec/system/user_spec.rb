@@ -16,7 +16,7 @@ RSpec.describe User, type: :system do
       let(:user_attr) { attributes_for(:user) }
       it "アカウント登録される" do
         expect(User.last.email).to eq user_attr[:email]
-        expect(current_path).to eq user_path(User.last)
+        expect(current_path).to eq users_path
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe User, type: :system do
       let(:user_attr) { attributes_for(:user, gender: "female")}
       it "女性でアカウント登録される" do
         expect(User.last.email).to eq user_attr[:email]
-        expect(current_path).to eq user_path(User.last)
+        expect(current_path).to eq users_path
         expect(User.last.gender).to eq user_attr[:gender]
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe User, type: :system do
     context "登録されている情報を入力した場合" do
       let(:user_attr) { attributes_for(:user) }
       it "ログインできる" do
-        expect(current_path).to eq user_path(User.last)
+        expect(current_path).to eq users_path
       end
     end
 

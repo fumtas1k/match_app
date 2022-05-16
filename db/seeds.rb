@@ -15,6 +15,6 @@ name_attrs.each_with_index do |(name, gender, self_introduction), i|
     user.gender = gender
     user.self_introduction = self_introduction
     user.password = "password"
-    user.profile_image = open("#{Rails.root}/db/dummy_images/#{i+1}.jpg")
+    user.profile_image = File.open("#{Rails.root}/db/dummy_images/#{i+1}.jpg")
   end
 end

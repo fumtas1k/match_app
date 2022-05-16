@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[show index]
   end
 
+  resources :reactions, only: %i[create]
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
