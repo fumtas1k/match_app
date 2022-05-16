@@ -1,0 +1,27 @@
+<div class="matching-index-page">
+  <%= render "partial/navbar", user: @user %>
+  <div class="matching">
+    <p class="matching-title ml-3">
+      <%= t("views.matching.index.message") %>
+    </p>
+    <p class="matching-num">
+      <%= "#{t("views.matching.index.matching_num")} #{@match_users.size}#{t("views.matching.index.count")}" %>
+    </p>
+    <div class="matching__list">
+      <% if @match_users.present? %>
+        <% @match_users.each do |user| %>
+          <div class="matching__person">
+            <% if user.profile_image.url.nil? %>
+              <div class="matching__person-default-img"></div>
+            <% else %>
+              <%= image_tag user.profile_image.url, class: "matching__person-img" %>
+            <% end %>
+            <div class="matching__person-name">
+              <%= user.name %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

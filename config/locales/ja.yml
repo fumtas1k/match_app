@@ -13,6 +13,11 @@ ja:
     users:
       index:
         no_user: 近くにお相手がいません
+    matching:
+      index:
+        message: メッセージ
+        matching_num: マッチング中の相手
+        count: 人
   date:
     abbr_day_names:
     - 日
