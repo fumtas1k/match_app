@@ -17,16 +17,31 @@ if(location.pathname === "/users") {
       }
     }
 
-    // ボタンクリックによるイベントメソッド
-    let createButtonListener = (reaction) => {
+    // reactionのstatusを送信するメソッド
+    let postReaction = (user_id, status) => {
+      $.ajax({
+        url: "reactions.json",
+        type: "POST",
+        datatype: "json",
+        data: {
+          user_id: user_id,
+          status: status,
+        }
+      });
+    }
+
+    // ハートorXボタンクリックによるイベントメソッド
+    let createButtonListener = (status) => {
       let cards = $(".swipe--card:not(.removed)");
       if (!cards.length) return false;
       let moveOutWidth = document.body.clientWidth * 2;
 
       let card = cards[0];
+
+      postReaction(card.id, status);
       card.classList.add("removed");
 
-      let pos = (reaction === "like" ? ["", "-"] : ["-", ""]);
+      let pos = (status === "like" ? ["", "-"] : ["-", ""]);
       card.style.transform = `translate(${pos[0] + moveOutWidth}px, -100px) rotate(${pos[1]}30deg)`;
 
       initCards();
@@ -71,6 +86,8 @@ if(location.pathname === "/users") {
         let keep = Math.abs(event.deltaX) < 200;
         event.target.classList.toggle("removed", !keep);
 
+        let status = event.deltaX > 0 ? "like" : "dislike";
+
         if (keep) {
           event.target.style.transform = "";
         } else {
@@ -81,6 +98,8 @@ if(location.pathname === "/users") {
           let xMulti = event.deltaX * 0.03;
           let yMulti = event.deltaY / 80;
           let rotate = xMulti * yMulti;
+
+          postReaction(card.id, status);
 
           event.target.style.transform = `translate(${toX}px, ${toY + event.deltaY}px) rotate(${rotate}deg)`;
 
