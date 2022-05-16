@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :active_reactions, foreign_key: :from_user_id ,class_name: "Reaction", dependent: :destroy
+  has_many :active_reactions, foreign_key: :from_user_id, class_name: "Reaction", dependent: :destroy
   has_many :passive_reactions, foreign_key: :to_user_id, class_name: "Reaction", dependent: :destroy
 
   # Include default devise modules. Others available are:
