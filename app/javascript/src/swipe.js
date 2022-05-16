@@ -1,4 +1,4 @@
-if(location.pathname == "/users") {
+if(location.pathname === "/users") {
 
   $(function() {
     let allCards = $(".swipe--card");
@@ -26,7 +26,7 @@ if(location.pathname == "/users") {
       let card = cards[0];
       card.classList.add("removed");
 
-      let pos = (reaction == "like" ? ["", "-"] : ["-", ""]);
+      let pos = (reaction === "like" ? ["", "-"] : ["-", ""]);
       card.style.transform = `translate(${pos[0] + moveOutWidth}px, -100px) rotate(${pos[1]}30deg)`;
 
       initCards();
