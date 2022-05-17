@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :passive_reactions, foreign_key: :to_user_id, class_name: "Reaction", dependent: :destroy
   has_many :chat_room_users, dependent: :destroy
   has_many :chat_rooms, through: :chat_room_users, source: :chat_room
+  has_many :messages, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
