@@ -7,6 +7,20 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      reaction: 反応
+      chat_room: チャットルーム
+      message: メッセージ
+    attriubutes:
+      reaction/status:
+        like: 好き
+        dislike: 好きではない
+      message:
+        content: 内容
+        user: ユーザー
+        chat_room: チャットルーム
+        created_at: 作成日
+        updated_at: 更新日
   views:
     top:
       index:
@@ -18,6 +32,9 @@ ja:
         message: メッセージ
         matching_num: マッチング中の相手
         count: 人
+    chat_rooms:
+      show:
+        message_form: メッセージを入力
   date:
     abbr_day_names:
     - 日

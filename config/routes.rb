@@ -6,12 +6,13 @@ Rails.application.routes.draw do
     sessions: "users/sessions"
   }
   devise_scope :user do
-    resources :users, only: %i[show index]
+    resources :users, only: %i[show index] do
+      resources :chat_rooms, only: %i[create show]
+    end
   end
 
   resources :reactions, only: %i[create]
   resources :matching, only: %i[index]
-  resources :chat_rooms, only: %i[create show]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

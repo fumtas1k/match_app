@@ -1,0 +1,21 @@
+<div class="message">
+  <% if message.user.id != current_user.id %>
+    <div class="message__partner">
+      <% if chat_room_user.profile_image&.url.nil? %>
+        <div class="message__partner-default-img"></div>
+      <% else %>
+        <%= image_tag message.user.profile_image.url, class: "message__partner-img" %>
+      <% end %>
+
+      <div class="message__content">
+        <%= message.content %>
+      </div>
+    </div>
+  <% else %>
+    <div class="message__current-user">
+      <div class="message__content main-color-bg">
+        <%= message.content %>
+      </div>
+    </div>
+  <% end %>
+</div>

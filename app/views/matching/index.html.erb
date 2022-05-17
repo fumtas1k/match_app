@@ -2,7 +2,7 @@
   <%= render "partial/navbar", user: @user %>
   <div class="matching">
     <p class="matching-title ml-3">
-      <%= t("views.matching.index.message") %>
+      <%= Message.model_name.human %>
     </p>
     <p class="matching-num">
       <%= "#{t("views.matching.index.matching_num")} #{@match_users.size}#{t("views.matching.index.count")}" %>
@@ -10,7 +10,7 @@
     <div class="matching__list">
       <% if @match_users.present? %>
         <% @match_users.each do |user| %>
-          <%= link_to chat_rooms_path(user_id: user.id), method: :post do %>
+          <%= link_to user_chat_rooms_path(user_id: user.id), method: :post do %>
           <div class="matching__person">
             <% if user.profile_image.url.nil? %>
               <div class="matching__person-default-img"></div>
