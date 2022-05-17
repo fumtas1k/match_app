@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :reactions, only: %i[create]
   resources :matching, only: %i[index]
+  resources :chat_rooms, only: %i[create show]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

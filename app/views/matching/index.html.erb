@@ -10,6 +10,7 @@
     <div class="matching__list">
       <% if @match_users.present? %>
         <% @match_users.each do |user| %>
+          <%= link_to chat_rooms_path(user_id: user.id), method: :post do %>
           <div class="matching__person">
             <% if user.profile_image.url.nil? %>
               <div class="matching__person-default-img"></div>
@@ -20,6 +21,7 @@
               <%= user.name %>
             </div>
           </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
