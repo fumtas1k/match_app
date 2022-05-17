@@ -9,12 +9,12 @@ class ChatRoomsController < ApplicationController
       chat_room.chat_room_users.create(user_id: current_user.id)
       chat_room.chat_room_users.create(user_id: params[:user_id])
     end
-    redirect_to chat_room
+    redirect_to user_chat_room_path(current_user, chat_room)
   end
 
   def show
     @chat_room = ChatRoom.find(params[:id])
     @chat_room_user = @chat_room.chat_room_users.find_by(user_id: current_user.id)&.user
-    @messages = Message.where(chat_room_id: @chat_room.id)
+    @messages = Message.where(chat_room_id: @chat_room.id).order(:created_at)
   end
 end

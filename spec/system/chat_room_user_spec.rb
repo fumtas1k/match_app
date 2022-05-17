@@ -17,7 +17,7 @@ RSpec.describe ChatRoomUser, type: :system do
         expect {
           click_on chat_user.name
           sleep 0.1
-          expect(current_path).to eq chat_room_path(current_user.chat_rooms.last)
+          expect(current_path).to eq user_chat_room_path(current_user, current_user.chat_rooms.last)
         }.to change(ChatRoom, :count).by(1)
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe ChatRoomUser, type: :system do
         expect {
           click_on chat_user.name
           sleep 0.1
-          expect(current_path).to eq chat_room_path(current_user.chat_rooms.last)
+          expect(current_path).to eq user_chat_room_path(current_user, current_user.chat_rooms.last)
         }.to change(ChatRoom, :count).by(0)
       end
     end
