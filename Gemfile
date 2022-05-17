@@ -20,6 +20,7 @@ gem 'enum_help'
 gem 'faker'
 gem 'fog-aws'
 gem 'image_processing', '~> 1.2'
+gem 'redis-rails'
 gem 'rexml'
 
 group :development, :test do
