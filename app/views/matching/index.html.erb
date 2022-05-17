@@ -2,7 +2,7 @@
   <%= render "partial/navbar", user: @user %>
   <div class="matching">
     <p class="matching-title ml-3">
-      <%= t("views.matching.index.message") %>
+      <%= Message.model_name.human %>
     </p>
     <p class="matching-num">
       <%= "#{t("views.matching.index.matching_num")} #{@match_users.size}#{t("views.matching.index.count")}" %>

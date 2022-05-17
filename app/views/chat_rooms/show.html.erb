@@ -1,1 +1,11 @@
-ここがルームだよ
+<%= render "partial/navbar", user: current_user %>
+<p><%= ChatRoom.model_name.human %></p>
+
+<div id="messages">
+  <%= render @messages %>
+</div>
+
+<form>
+  <textarea data-behavior="chat_room_speaker" data-chat_room_id=<%= @chat_room.id %> placeholder=<%= t("views.chat_rooms.show.message_form") %>
+  class="chat-room__message-form_textarea"></textarea>
+</form>
