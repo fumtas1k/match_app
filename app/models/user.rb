@@ -27,4 +27,16 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def self.guest
+    email = "guest@diver.com"
+    find_or_create_by!(email: email) do |user|
+      user.name = "Guest"
+      user.email = email
+      user.gender = :female
+      user.password = "password"
+      user.self_introduction = "私はゲストです。"
+      user.profile_image = File.open("#{Rails.root}/db/dummy_images/avatar.jpg")
+    end
+  end
 end
