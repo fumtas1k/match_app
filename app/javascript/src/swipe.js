@@ -1,6 +1,5 @@
-if(location.pathname === "/users") {
-
-  $(function() {
+$(document).on("turbolinks:load", function() {
+  if(location.pathname === "/users") {
     let allCards = $(".swipe--card");
     let swipeContainer = $(".swipe")[0];
 
@@ -107,5 +106,5 @@ if(location.pathname === "/users") {
         }
       });
     });
-  });
-}
+  }
+});
