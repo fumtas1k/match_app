@@ -122,6 +122,7 @@ ja:
     sessions:
       already_signed_out: 既にログアウト済みです。
       new:
+        guest_sign_in: ゲストログイン
         sign_in: ログイン
         sign_out: ログアウト
       signed_in: ログインしました。
