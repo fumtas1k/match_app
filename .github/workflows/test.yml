@@ -3,69 +3,76 @@ name: Test
 on:
   pull_request:
 
-  jobs:
-    test:
-      name: Test
-      runs-on: ubuntu-latest
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
 
-      if: "!contains(github.event.head_commit.message, 'ci skip')"
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
 
-      services:
-        postgres:
-          image: postgres
-          env:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: issues_app_test
-          options: >-
-            --health-cmd pg_isready
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 5
-          ports:
-            - 5432:5432
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: issues_app_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
 
-      steps:
-        - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-        - uses: ruby/setup-ruby@1
-          with:
-            ruby-version: "3.0.1"
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.0.1"
 
-        - uses: actions/setup-node@v2
-          with:
-            node-version: 16
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
-        - name: Cache bundle
-          uses: actions/cache@v2
-          with:
-            path: vendor/bundle
-            key: bundle-v1-${{ hashFiles('Gemfile.lock') }}
+      - name: Cache bundle
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: bundle-v1-${{ hashFiles('Gemfile.lock') }}
 
-        - name: Run bundle install
-          run: |
-            bundle config --local path vendor/bundle
-            bundle config -- local without production
-            bundle install
+      - name: Run bundle install
+        run: |
+          bundle config --local path vendor/bundle
+          bundle config -- local without production
+          bundle install
 
-        - name: Cache yarn
-          uses: actions/cache@v2
-          with:
-            path: node_modules
-            key: yarn-v1-${{ hashFile('yarn.lock') }}
+      - name: Cache yarn
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-v1-${{ hashFiles('yarn.lock') }}
 
-        - name: Run yarn install
-          run: yarn install
+      - name: Run yarn install
+        run: yarn install
 
-        - name: Set env
-          run: |
-            echo '::set-env name=RAILS_ENV::test'
-            echo '::set-env name=DATABASE_URL::postgres://postgres:postgres@localhost:5432/issues_app_test'
+      - name: Set env
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/issues_app_test" >> $GITHUB_ENV
 
-        - run: RAILS_ENV=test bundle exec rails assets:precompile
+      - run: RAILS_ENV=test bundle exec rails assets:precompile
 
-        - name: Setup DB
-          run: bundle exec rails db:schema:load
+      - name: Setup DB
+        run: bundle exec rails db:schema:load
 
-        - name: Run tests
-          run: bundle exec rspec
+      - name: Install chrome
+        run: |
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+          echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+          apt update -y
+          apt install -y google-chrome-stable
+
+      - name: Run tests
+        run: bundle exec rspec
