@@ -59,8 +59,8 @@ jobs:
 
       - name: Set env
         run: |
-          echo '::set-env name=RAILS_ENV::test'
-          echo '::set-env name=DATABASE_URL::postgres://postgres:postgres@localhost:5432/issues_app_test'
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "DATABASE_URL=postgres://postgres:postgres@localhost:5432/issues_app_test" >> $GITHUB_ENV
 
       - run: RAILS_ENV=test bundle exec rails assets:precompile
 
