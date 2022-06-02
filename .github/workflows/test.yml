@@ -52,7 +52,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: yarn-v1-${{ hashFile('yarn.lock') }}
+          key: yarn-v1-${{ hashFiles('yarn.lock') }}
 
       - name: Run yarn install
         run: yarn install
